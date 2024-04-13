@@ -4,45 +4,44 @@ import axios from 'axios';
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(''); // Ajout d'un état pour gérer les messages d'erreur
+  const [error, setError] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/login', { username, password });
-      onLogin({ username, token: response.data.token }); // Lever l'état d'authentification avec le token et le nom d'utilisateur
-      setError(''); // Réinitialiser les erreurs précédentes
+      const { data } = await axios.post('http://localhost:5000/api/login', { username, password });
+      onLogin(data);  // Supposons que data contient le token et les infos utilisateur
+      setError('');
     } catch (error) {
-      // Afficher une erreur générique ou une erreur renvoyée par le serveur
-      setError(error.response ? error.response.data.message : 'Login failed due to server error');
+      setError('Failed to login. Check your username and password.');
     }
   };
 
   return (
-    <div>
+    <div className="login-form">
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input 
-            type="text" 
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)} 
+        <div>
+          <label>Username:</label>
+          <input
+            type="text"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Password:
-          <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
+        </div>
+        <div>
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
             required
           />
-        </label>
+        </div>
         <button type="submit">Login</button>
+        {error && <p className="error">{error}</p>}
       </form>
-      {/* Affichage des messages d'erreur */}
-      {error && <div style={{ color: 'red' }}>{error}</div>}
     </div>
   );
 }
