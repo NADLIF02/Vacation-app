@@ -2,7 +2,7 @@ version: '3.8'
 services:
   app:
     build:
-      context: ./client  # Assurez-vous que ce chemin mène au dossier contenant le Dockerfile
+      context:  ./server   # Assurez-vous que ce chemin mène au dossier contenant le Dockerfile
       dockerfile: Dockerfile
     ports:
       - "5000:5000"  # Expose le port 5000 pour accéder à l'application depuis le navigateur
