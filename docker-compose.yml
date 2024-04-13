@@ -1,13 +1,11 @@
 version: '3.8'
 services:
   app:
-    build: ./server
+    build:
+      context: ./client  # Assurez-vous que ce chemin mène au dossier contenant le Dockerfile
+      dockerfile: Dockerfile
     ports:
-      - "5000:5000"
-    environment:
-      - MONGODB_URI=mongodb://db:27017/vacationdb  # Assuming 'db' is the service name of MongoDB
-    depends_on:
-      - db
+      - "5000:5000"  # Expose le port 5000 pour accéder à l'application depuis le navigateur
   db:
     image: mongo
     environment:
