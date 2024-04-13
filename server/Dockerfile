@@ -1,23 +1,34 @@
-# Utiliser une image Node.js officielle comme image de base
-FROM node:14-alpine
+# Utiliser une image Ubuntu officielle comme base
+FROM ubuntu:latest
 
-# Définir le répertoire de travail dans le conteneur
+# Installer curl et autres utilitaires nécessaires
+RUN apt-get update && apt-get install -y curl software-properties-common
+
+# Installer Node.js via le PPA de NodeSource
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get update && apt-get install -y nodejs
+
+# Vérifier les installations de Node.js et npm
+RUN node -v
+RUN npm -v
+
+# Définir le répertoire de travail pour les commandes suivantes
 WORKDIR /app
 
-# Copier les fichiers package.json et package-lock.json
+# Copier les fichiers package.json et package-lock.json (si disponible)
 COPY package*.json ./
 
 # Installer les dépendances du projet
 RUN npm install
 
-# Copier tous les fichiers du projet dans le conteneur
+# Copier le reste des fichiers de l'application dans le répertoire de travail
 COPY . .
 
-# Construire l'application React
-RUN npm run build
+# Construire l'application, si nécessaire
+# RUN npm run build
 
-# Installer serve pour servir l'application sur le port 5000
-RUN npm install -g serve
+# Exposer le port sur lequel l'application s'exécutera
+EXPOSE 5000
 
 # Définir la commande pour démarrer l'application
-CMD ["serve", "-s", "build", "-l", "5000"]
+CMD ["node", "server.js"]
