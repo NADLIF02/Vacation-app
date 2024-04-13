@@ -1,22 +1,26 @@
 version: '3.8'
 services:
   app:
-    build: ./server
+    build: ./server # Assurez-vous que le Dockerfile est dans ce répertoire
     ports:
       - "5000:5000"
-    volumes:
-      - ./server:/usr/src/app
     depends_on:
-      - mongo
+      - db
     environment:
-      ATLAS_URI: mongodb://mongo:27017/vacationdb
-  client:
-    build: ./client
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASS=mysecret
+
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: mysecret
+      MYSQL_DATABASE: vacationdb
     ports:
-      - "3000:3000"
+      - "3306:3306"
     volumes:
-      - ./client/src:/usr/src/app/src
-  mongo:
-    image: mongo
-    ports:
-      - "27017:27017"
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
