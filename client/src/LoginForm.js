@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function LoginForm() {
+function LoginForm({ onLogin }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,10 +11,9 @@ function LoginForm() {
     try {
       const { data } = await axios.post('http://172.20.10.2:5000/api/login', { username, password });
       console.log('Login successful', data);
-      // Handle login success (e.g., storing the token, redirecting user)
+      onLogin(data.token, username); // Trigger the onLogin function passed as a prop
     } catch (error) {
       console.error('Login failed', error);
-      // Handle login error
     }
   };
 
