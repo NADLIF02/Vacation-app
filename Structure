@@ -1,23 +1,30 @@
 vacation-app/
 │
-├── client/                     # Contient tout le code source du frontend
-│   ├── public/                 # Fichiers statiques pour le frontend
-│   ├── src/                    # Code source JavaScript pour React
-│   │   ├── App.js              # Composant principal de l'application React
-│   │   ├── index.js            # Point d'entrée de l'application React
-│   │   └── ...                 # Autres fichiers sources JavaScript ou CSS
-│   ├── package.json            # Dépendances et scripts pour le frontend
+├── client/                       # Répertoire source du frontend
+│   ├── public/                   # Fichiers statiques publics comme index.html
+│   │   └── index.html            # HTML pour le point d'entrée
+│   ├── src/                      # Fichiers source de React
+│   │   ├── components/           # Composants React
+│   │   │   ├── LoginForm.js      # Composant pour le formulaire de connexion
+│   │   │   └── ...               # Autres composants
+│   │   ├── App.js                # Composant principal de React
+│   │   ├── index.js              # Point d'entrée de l'application React
+│   │   └── ...                   # Autres fichiers JS et CSS
+│   ├── package.json              # Dépendances et scripts du frontend
 │   └── ...
 │
-├── server/                     # Contient tout le code source du backend
-│   ├── models/                 # Modèles Mongoose pour les schémas de données
-│   │   └── Vacation.js         # Définition du modèle de demande de congés
-│   ├── routes/                 # Routes Express pour le backend
-│   │   └── vacations.js        # Routes pour gérer les demandes de congés
-│   ├── server.js               # Fichier principal du serveur Express
-│   ├── Dockerfile              # Dockerfile pour construire l'image de l'application
-│   └── package.json            # Dépendances et scripts pour le backend
+├── server/                       # Répertoire source du backend
+│   ├── models/                   # Modèles Mongoose pour MongoDB
+│   │   └── User.js               # Modèle utilisateur
+│   │   └── Vacation.js           # Modèle pour les demandes de congés
+│   ├── routes/                   # Routes Express
+│   │   ├── authRoutes.js         # Routes pour l'authentification
+│   │   ├── vacations.js          # Routes pour la gestion des congés
+│   │   └── ...                   # Autres routes
+│   ├── server.js                 # Fichier principal du serveur
+│   ├── Dockerfile                # Dockerfile pour construire l'image du backend
+│   └── package.json              # Dépendances et scripts du backend
 │
-├── docker-compose.yml          # Fichier Docker Compose pour orchestrer les conteneurs
-├── .gitignore                  # Fichier pour ignorer les fichiers/dossiers inutiles dans git
-└── README.md                   # Documentation du projet pour GitHub
+├── docker-compose.yml            # Fichier Docker Compose pour orchestrer les conteneurs
+├── .gitignore                    # Spécifie les fichiers non suivis à ignorer
+└── README.md                     # Documentation du projet
