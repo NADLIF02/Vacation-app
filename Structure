@@ -1,30 +1,27 @@
-vacation-app/
-│
-├── client/                       # Répertoire source du frontend
-│   ├── public/                   # Fichiers statiques publics comme index.html
-│   │   └── index.html            # HTML pour le point d'entrée
-│   ├── src/                      # Fichiers source de React
-│   │   ├── components/           # Composants React
-│   │   │   ├── LoginForm.js      # Composant pour le formulaire de connexion
-│   │   │   └── ...               # Autres composants
-│   │   ├── App.js                # Composant principal de React
-│   │   ├── index.js              # Point d'entrée de l'application React
-│   │   └── ...                   # Autres fichiers JS et CSS
-│   ├── package.json              # Dépendances et scripts du frontend
-│   └── ...
-│
-├── server/                       # Répertoire source du backend
-│   ├── models/                   # Modèles Mongoose pour MongoDB
-│   │   └── User.js               # Modèle utilisateur
-│   │   └── Vacation.js           # Modèle pour les demandes de congés
-│   ├── routes/                   # Routes Express
-│   │   ├── authRoutes.js         # Routes pour l'authentification
-│   │   ├── vacations.js          # Routes pour la gestion des congés
-│   │   └── ...                   # Autres routes
-│   ├── server.js                 # Fichier principal du serveur
-│   ├── Dockerfile                # Dockerfile pour construire l'image du backend
-│   └── package.json              # Dépendances et scripts du backend
-│
-├── docker-compose.yml            # Fichier Docker Compose pour orchestrer les conteneurs
-├── .gitignore                    # Spécifie les fichiers non suivis à ignorer
-└── README.md                     # Documentation du projet
+/vacation-app/
+├── /client/
+│   ├── /public/
+│   │   ├── index.html             # Fichier HTML principal pour React
+│   │   └── LoginForm.css          # Styles pour LoginForm
+│   ├── /src/
+│   │   ├── App.js                 # Composant principal de l'application React
+│   │   ├── CalendarPage.js        # Composant pour la page du calendrier
+│   │   ├── LoginForm.js           # Composant pour le formulaire de connexion
+│   │   └── index.js               # Point d'entrée de l'application React
+│   └── package.json               # Dépendances et scripts pour le frontend
+├── /server/
+│   ├── /models/
+│   │   ├── User.js                # Modèle Mongoose pour les utilisateurs
+│   │   └── Vacation.js            # Modèle Mongoose pour les congés
+│   ├── /routes/
+│   │   ├── authRoutes.js          # Routes pour l'authentification
+│   │   └── vacationRoutes.js      # Routes pour la gestion des congés (à créer)
+│   ├── Dockerfile                 # Dockerfile pour le backend
+│   ├── authMiddleware.js          # Middleware pour l'authentification JWT
+│   ├── db.js                      # Configuration de la base de données MongoDB
+│   ├── package.json               # Dépendances et scripts pour le backend
+│   └── server.js                  # Fichier principal du serveur Express
+├── .gitignore                     # Fichier pour ignorer les fichiers inutiles dans git
+├── README.md                      # Documentation du projet
+├── Structure                      # Documentation de la structure du projet (si nécessaire)
+└── docker-compose.yml             # Configuration Docker Compose
