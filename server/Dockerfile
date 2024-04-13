@@ -12,10 +12,11 @@ WORKDIR /app
 # Copier les fichiers de package.json et package-lock.json
 COPY package*.json ./
 
-# Installer les dépendances de l'application
+# Installer toutes les dépendances de l'application, y compris les bibliothèques externes
 RUN npm install
-# Installer les dépendances de l'application en utilisant npm ci pour une installation plus propre
-RUN npm ci --only=production
+# Vous pouvez utiliser `npm ci` au lieu de `npm install` si vous souhaitez une installation plus fiable basée sur package-lock.json
+# RUN npm ci --only=production
+
 # Copier le reste des fichiers de l'application
 COPY . .
 
