@@ -1,26 +1,22 @@
 version: '3.8'
 services:
   app:
-    build: ./server # Assurez-vous que le Dockerfile est dans ce répertoire
+    build: ./server
     ports:
       - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb://db:27017/vacationdb  # Assuming 'db' is the service name of MongoDB
     depends_on:
       - db
-    environment:
-      - DB_HOST=db
-      - DB_PORT=3306
-      - DB_USER=root
-      - DB_PASS=mysecret
-
   db:
-    image: mariadb
+    image: mongo
     environment:
-      MYSQL_ROOT_PASSWORD: mysecret
-      MYSQL_DATABASE: vacationdb
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
     ports:
-      - "3306:3306"
+      - "27017:27017"
     volumes:
-      - db_data:/var/lib/mysql
+      - mongo_data:/data/db
 
 volumes:
-  db_data:
+  mongo_data:
